@@ -267,6 +267,7 @@
 
     /* Logo */
     .logo-wrap {
+      max-width: 100%;
       margin-bottom: 2.8rem;
       opacity: 0;
       animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
@@ -283,7 +284,7 @@
       width: max-content;
       height: max-content;
       max-width: 100%;
-      background: #ffffff;
+      background: transparent;
       border-radius: 15px;
       display: flex;
       align-items: center;
@@ -561,9 +562,6 @@
     }
 
     @media (max-width:600px) {
-      .logo-name {
-        font-size: 1.2rem;
-      }
 
       .hero-desc {
         font-size: 0.95rem;
