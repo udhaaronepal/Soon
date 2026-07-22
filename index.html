@@ -1,678 +1,346 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon — Udhaar One Nepal</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Syne:wght@600;700;800&display=swap"
-    rel="stylesheet">
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --primary: #5B8DEF;
-      --primary-light: #85AAEF;
-      --primary-xlt: #C8DAFC;
-      --primary-pale: #EAF1FE;
-      --primary-dark: #3A6DD4;
-      --text-dark: #0f172a;
-      --text-mid: #475569;
-      --text-light: #94a3b8;
-      --border: rgba(91, 141, 239, 0.15);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #ffffff;
-      font-family: 'DM Sans', sans-serif;
-      color: var(--text-dark);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .bg-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background: #ffffff;
-      overflow: hidden;
-    }
-
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.5;
-      animation: drift linear infinite;
-    }
-
-    .blob-1 {
-      width: 650px;
-      height: 650px;
-      background: radial-gradient(circle, #ddeaff 0%, #bdd1fb 100%);
-      top: -220px;
-      left: -160px;
-      animation-duration: 22s;
-    }
-
-    .blob-2 {
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, #e8f0fe 0%, #c4d7fd 100%);
-      top: 25%;
-      right: -120px;
-      animation-duration: 28s;
-      animation-delay: -8s;
-    }
-
-    .blob-3 {
-      width: 420px;
-      height: 420px;
-      background: radial-gradient(circle, #f0f6ff 0%, #d6e5fc 100%);
-      bottom: -120px;
-      left: 18%;
-      animation-duration: 20s;
-      animation-delay: -14s;
-    }
-
-    .blob-4 {
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, #e4effe 0%, #c9dafc 100%);
-      top: 55%;
-      left: 42%;
-      animation-duration: 25s;
-      animation-delay: -5s;
-    }
-
-    @keyframes drift {
-      0% {
-        transform: translate(0, 0) scale(1);
-      }
-
-      25% {
-        transform: translate(45px, -35px) scale(1.06);
-      }
-
-      50% {
-        transform: translate(-25px, 55px) scale(0.96);
-      }
-
-      75% {
-        transform: translate(35px, 25px) scale(1.04);
-      }
-
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-    }
-
-    .grain {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.028;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px 200px;
-    }
-
-    .shimmer-line {
-      position: fixed;
-      width: 1px;
-      height: 100vh;
-      z-index: 1;
-      background: linear-gradient(to bottom, transparent 0%, rgba(91, 141, 239, 0.18) 50%, transparent 100%);
-      animation: shimmer-move 9s ease-in-out infinite;
-    }
-
-    .shimmer-line:nth-child(1) {
-      left: 18%;
-      animation-delay: 0s;
-    }
-
-    .shimmer-line:nth-child(2) {
-      left: 52%;
-      animation-delay: 3s;
-    }
-
-    .shimmer-line:nth-child(3) {
-      left: 82%;
-      animation-delay: 6s;
-    }
-
-    @keyframes shimmer-move {
-
-      0%,
-      100% {
-        opacity: 0;
-        transform: scaleY(0.3) translateY(-30%);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scaleY(1) translateY(0);
-      }
-    }
-
-    .ring-decor {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 1;
-      border: 1px solid rgba(91, 141, 239, 0.09);
-      animation: ring-pulse 7s ease-in-out infinite;
-    }
-
-    .ring-1 {
-      width: 480px;
-      height: 480px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: 0s;
-    }
-
-    .ring-2 {
-      width: 740px;
-      height: 740px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: 2.3s;
-    }
-
-    .ring-3 {
-      width: 980px;
-      height: 980px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-delay: 4.6s;
-    }
-
-    @keyframes ring-pulse {
-
-      0%,
-      100% {
-        opacity: 0.35;
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      50% {
-        opacity: 0.7;
-        transform: translate(-50%, -50%) scale(1.02);
-      }
-    }
-
-    .particles {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0;
-      background: radial-gradient(circle, rgba(133, 170, 239, 0.65), transparent);
-      animation: float-up linear infinite;
-    }
-
-    @keyframes float-up {
-      0% {
-        transform: translateY(0) scale(0);
-        opacity: 0;
-      }
-
-      10% {
-        opacity: 0.5;
-        transform: translateY(-10px) scale(1);
-      }
-
-      90% {
-        opacity: 0.12;
-      }
-
-      100% {
-        transform: translateY(-130px) scale(0.2);
-        opacity: 0;
-      }
-    }
-
-    main {
-      position: relative;
-      z-index: 2;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1.5rem;
-    }
-
-    /* Logo */
-    .logo-wrap {
-      max-width: 100%;
-      margin-bottom: 2.8rem;
-      opacity: 0;
-      animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      flex-direction: column;
-    }
-
-    .logo-icon {
-      width: max-content;
-      height: max-content;
-      max-width: 100%;
-      background: transparent;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .logo-icon::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.26) 0%, transparent 55%);
-      border-radius: inherit;
-    }
-
-    .logo-icon svg {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      max-width: 1024px;
-      opacity: 0;
-      animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
-      margin-bottom: 2.8rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: var(--primary-pale);
-      border: 1px solid var(--primary-xlt);
-      color: var(--primary-dark);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 100px;
-      margin-bottom: 1.6rem;
-    }
-
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--primary);
-      border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(91, 141, 239, 0.4);
-      animation: pulse-ring 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-ring {
-      0% {
-        box-shadow: 0 0 0 0 rgba(91, 141, 239, 0.45);
-      }
-
-      70% {
-        box-shadow: 0 0 0 7px rgba(91, 141, 239, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(91, 141, 239, 0);
-      }
-    }
-
-    h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 7.5vw, 5.2rem);
-      font-weight: 800;
-      line-height: 1.07;
-      letter-spacing: -0.035em;
-      color: var(--text-dark);
-      margin-bottom: 1.3rem;
-    }
-
-    h1 .accent {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, var(--primary-dark) 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: grad-shift 4s ease infinite;
-    }
-
-    @keyframes grad-shift {
-
-      0%,
-      100% {
-        background-position: 0% center;
-      }
-
-      50% {
-        background-position: 100% center;
-      }
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      font-weight: 400;
-      line-height: 1.78;
-      color: var(--text-mid);
-      max-width: 490px;
-      margin: 0 auto;
-      font-style: italic;
-    }
-
-    /* Roles */
-    .roles-section {
-      width: 100%;
-      max-width: 680px;
-      margin-bottom: 2.8rem;
-      opacity: 0;
-      animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
-    }
-
-    .roles-label {
-      text-align: center;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 1rem;
-    }
-
-    .roles-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 9px;
-      justify-content: center;
-    }
-
-    .role-chip {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid var(--border);
-      padding: 9px 18px;
-      border-radius: 10px;
-      font-size: 0.84rem;
-      font-weight: 500;
-      color: var(--text-mid);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 1px 6px rgba(91, 141, 239, 0.06);
-      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-      cursor: default;
-    }
-
-    .role-chip:hover {
-      background: var(--primary-pale);
-      border-color: var(--primary-xlt);
-      color: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(91, 141, 239, 0.18), 0 0 0 3px rgba(91, 141, 239, 0.07);
-    }
-
-    .chip-icon {
-      font-size: 14px;
-      line-height: 1;
-    }
-
-    /* CTA */
-    .cta-wrap {
-      opacity: 0;
-      animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.9rem;
-    }
-
-    .cta-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--primary);
-      color: #fff;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.96rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      padding: 15px 38px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 6px 28px rgba(91, 141, 239, 0.42);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-    }
-
-    .cta-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(140deg, rgba(255, 255, 255, 0.2) 0%, transparent 55%);
-    }
-
-    .cta-btn:hover {
-      background: var(--primary-dark);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(91, 141, 239, 0.52), 0 0 0 5px rgba(91, 141, 239, 0.1);
-    }
-
-    .cta-btn:active {
-      transform: translateY(-1px);
-    }
-
-    .cta-arrow {
-      width: 17px;
-      height: 17px;
-      transition: transform 0.2s ease;
-      flex-shrink: 0;
-    }
-
-    .cta-btn:hover .cta-arrow {
-      transform: translateX(4px);
-    }
-
-    .cta-note {
-      font-size: 0.76rem;
-      color: var(--text-light);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .divider {
-      width: 100px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--primary-xlt), transparent);
-      margin: 2.5rem auto;
-      opacity: 0;
-      animation: fadeIn 1s ease 1.2s forwards;
-    }
-
-    footer {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 1.5rem;
-      font-size: 0.74rem;
-      color: var(--text-light);
-      opacity: 0;
-      animation: fadeIn 1s ease 1.4s forwards;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    @media (max-width:600px) {
-
-      .hero-desc {
-        font-size: 0.95rem;
-      }
-
-      .role-chip {
-        font-size: 0.8rem;
-        padding: 8px 14px;
-      }
-
-      .cta-btn {
-        font-size: 0.9rem;
-        padding: 13px 28px;
-        border-radius: 10px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="bg-canvas">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="blob blob-4"></div>
-  </div>
-  <div class="grain"></div>
-  <div class="shimmer-line"></div>
-  <div class="shimmer-line"></div>
-  <div class="shimmer-line"></div>
-  <div class="particles" id="particles"></div>
-  <div class="ring-decor ring-1"></div>
-  <div class="ring-decor ring-2"></div>
-  <div class="ring-decor ring-3"></div>
-
-  <main>
-
-    <div class="logo-wrap">
-      <div class="logo">
-        <div class="logo-icon">
-          <svg width="426" height="96" viewBox="0 0 426 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_3_11)">
-              <path
-                d="M20.0595 14.992V56.464C20.0595 61.008 21.2435 64.496 23.6115 66.928C25.9795 69.296 29.3075 70.48 33.5955 70.48C37.9475 70.48 41.3075 69.296 43.6755 66.928C46.0435 64.496 47.2275 61.008 47.2275 56.464V14.992H60.7635V56.368C60.7635 62.064 59.5155 66.896 57.0195 70.864C54.5875 74.768 51.2915 77.712 47.1315 79.696C43.0355 81.68 38.4595 82.672 33.4035 82.672C28.4115 82.672 23.8675 81.68 19.7715 79.696C15.7395 77.712 12.5395 74.768 10.1715 70.864C7.8035 66.896 6.6195 62.064 6.6195 56.368V14.992H20.0595ZM70.293 55.216C70.293 49.84 71.349 45.072 73.461 40.912C75.637 36.752 78.581 33.552 82.293 31.312C86.005 29.072 90.133 27.952 94.677 27.952C98.133 27.952 101.429 28.72 104.565 30.256C107.701 31.728 110.197 33.712 112.053 36.208V10.96H125.685V82H112.053V74.128C110.389 76.752 108.053 78.864 105.045 80.464C102.037 82.064 98.549 82.864 94.581 82.864C90.101 82.864 86.005 81.712 82.293 79.408C78.581 77.104 75.637 73.872 73.461 69.712C71.349 65.488 70.293 60.656 70.293 55.216ZM112.149 55.408C112.149 52.144 111.509 49.36 110.229 47.056C108.949 44.688 107.221 42.896 105.045 41.68C102.869 40.4 100.533 39.76 98.037 39.76C95.541 39.76 93.237 40.368 91.125 41.584C89.013 42.8 87.285 44.592 85.941 46.96C84.661 49.264 84.021 52.016 84.021 55.216C84.021 58.416 84.661 61.232 85.941 63.664C87.285 66.032 89.013 67.856 91.125 69.136C93.301 70.416 95.605 71.056 98.037 71.056C100.533 71.056 102.869 70.448 105.045 69.232C107.221 67.952 108.949 66.16 110.229 63.856C111.509 61.488 112.149 58.672 112.149 55.408ZM168.764 28.048C172.796 28.048 176.38 28.944 179.516 30.736C182.652 32.464 185.084 35.056 186.812 38.512C188.604 41.904 189.5 46 189.5 50.8V82H176.06V52.624C176.06 48.4 175.004 45.168 172.892 42.928C170.78 40.624 167.9 39.472 164.252 39.472C160.54 39.472 157.596 40.624 155.42 42.928C153.308 45.168 152.252 48.4 152.252 52.624V82H138.812V10.96H152.252V35.44C153.98 33.136 156.284 31.344 159.164 30.064C162.044 28.72 165.244 28.048 168.764 28.048ZM198.824 55.216C198.824 49.84 199.88 45.072 201.992 40.912C204.168 36.752 207.08 33.552 210.728 31.312C214.44 29.072 218.568 27.952 223.112 27.952C227.08 27.952 230.536 28.752 233.48 30.352C236.488 31.952 238.888 33.968 240.68 36.4V28.816H254.216V82H240.68V74.224C238.952 76.72 236.552 78.8 233.48 80.464C230.472 82.064 226.984 82.864 223.016 82.864C218.536 82.864 214.44 81.712 210.728 79.408C207.08 77.104 204.168 73.872 201.992 69.712C199.88 65.488 198.824 60.656 198.824 55.216ZM240.68 55.408C240.68 52.144 240.04 49.36 238.76 47.056C237.48 44.688 235.752 42.896 233.576 41.68C231.4 40.4 229.064 39.76 226.568 39.76C224.072 39.76 221.768 40.368 219.656 41.584C217.544 42.8 215.816 44.592 214.472 46.96C213.192 49.264 212.552 52.016 212.552 55.216C212.552 58.416 213.192 61.232 214.472 63.664C215.816 66.032 217.544 67.856 219.656 69.136C221.832 70.416 224.136 71.056 226.568 71.056C229.064 71.056 231.4 70.448 233.576 69.232C235.752 67.952 237.48 66.16 238.76 63.856C240.04 61.488 240.68 58.672 240.68 55.408ZM263.887 55.216C263.887 49.84 264.943 45.072 267.055 40.912C269.231 36.752 272.143 33.552 275.791 31.312C279.503 29.072 283.631 27.952 288.175 27.952C292.143 27.952 295.599 28.752 298.543 30.352C301.551 31.952 303.951 33.968 305.743 36.4V28.816H319.279V82H305.743V74.224C304.015 76.72 301.615 78.8 298.543 80.464C295.535 82.064 292.047 82.864 288.079 82.864C283.599 82.864 279.503 81.712 275.791 79.408C272.143 77.104 269.231 73.872 267.055 69.712C264.943 65.488 263.887 60.656 263.887 55.216ZM305.743 55.408C305.743 52.144 305.103 49.36 303.823 47.056C302.543 44.688 300.815 42.896 298.639 41.68C296.463 40.4 294.127 39.76 291.631 39.76C289.135 39.76 286.831 40.368 284.719 41.584C282.607 42.8 280.879 44.592 279.535 46.96C278.255 49.264 277.615 52.016 277.615 55.216C277.615 58.416 278.255 61.232 279.535 63.664C280.879 66.032 282.607 67.856 284.719 69.136C286.895 70.416 289.199 71.056 291.631 71.056C294.127 71.056 296.463 70.448 298.639 69.232C300.815 67.952 302.543 66.16 303.823 63.856C305.103 61.488 305.743 58.672 305.743 55.408ZM345.845 37.072C347.573 34.256 349.813 32.048 352.565 30.448C355.381 28.848 358.581 28.048 362.165 28.048V42.16H358.613C354.389 42.16 351.189 43.152 349.013 45.136C346.901 47.12 345.845 50.576 345.845 55.504V82H332.405V28.816H345.845V37.072ZM394.834 82.864C389.714 82.864 385.106 81.744 381.01 79.504C376.914 77.2 373.682 73.968 371.314 69.808C369.01 65.648 367.858 60.848 367.858 55.408C367.858 49.968 369.042 45.168 371.41 41.008C373.842 36.848 377.138 33.648 381.298 31.408C385.458 29.104 390.098 27.952 395.218 27.952C400.338 27.952 404.978 29.104 409.138 31.408C413.298 33.648 416.562 36.848 418.93 41.008C421.362 45.168 422.578 49.968 422.578 55.408C422.578 60.848 421.33 65.648 418.834 69.808C416.402 73.968 413.074 77.2 408.85 79.504C404.69 81.744 400.018 82.864 394.834 82.864ZM394.834 71.152C397.266 71.152 399.538 70.576 401.65 69.424C403.826 68.208 405.554 66.416 406.834 64.048C408.114 61.68 408.754 58.8 408.754 55.408C408.754 50.352 407.41 46.48 404.722 43.792C402.098 41.04 398.866 39.664 395.026 39.664C391.186 39.664 387.954 41.04 385.33 43.792C382.77 46.48 381.49 50.352 381.49 55.408C381.49 60.464 382.738 64.368 385.234 67.12C387.794 69.808 390.994 71.152 394.834 71.152Z"
-                fill="#5B8DEF" />
-            </g>
-            <defs>
-              <clipPath id="clip0_3_11">
-                <rect width="426" height="96" fill="white" />
-              </clipPath>
-            </defs>
-          </svg>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Udhaaro - Coming Soon</title>
+    <meta
+      name="description"
+      content="We're building something new. Join us as an early volunteer or get in touch - more details coming soon."
+    />
+    <meta name="theme-color" content="#5b8def" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='32' height='32' rx='16' fill='white'/%3E%3Cpath d='M10.3077 23.4592C9.89513 23.3045 9.77051 22.9865 9.75977 22.8469C13.4123 23.8674 20.9366 25.9666 21.8133 26.1986C22.909 26.4887 23.6503 25.8119 23.9081 25.5863C24.1144 25.4058 24.3593 24.9525 24.456 24.7484C24.4775 24.9847 24.4689 25.5734 24.2626 26.0375C23.7985 26.7852 22.3074 26.8002 21.6199 26.7143C18.021 25.6937 10.7202 23.6139 10.3077 23.4592Z' fill='%230D4BDC'/%3E%3Cpath d='M19.5259 21.3644V9.63312C20.3101 9.86946 22.1557 10.4388 23.2644 10.8256C24.373 11.2123 24.5857 12.2114 24.5535 12.6626C24.5535 16.1863 24.6618 23.5098 24.5535 24.5872C24.424 25.8764 24.2951 26.0375 24.1662 26.1664C24.1662 25.9193 24.1668 25.2769 24.1668 24.9417C24.199 23.9104 23.4255 23.4914 23.1677 23.2981C22.6843 23.008 21.4273 22.718 20.4605 22.4279C19.687 22.1959 19.5151 21.6222 19.5259 21.3644Z' fill='url(%23paint0_linear_166_2)'/%3E%3Cpath d='M18.4837 21.7495V10.0134C18.4062 8.77528 17.4826 8.10035 17.0304 7.91764C14.2315 7.12234 8.50443 5.48658 7.98771 5.30602C7.47098 5.12547 7.3418 5.42425 7.3418 5.5962V19.5893C7.3418 20.879 8.39678 21.5238 8.92428 21.685C13.155 22.8887 21.7779 25.3348 22.4238 25.4896C23.4889 25.5863 23.2633 24.2971 22.6821 24.1677C22.37 24.0925 21.4162 23.8453 20.0985 23.4584C18.7809 23.1746 18.473 22.2009 18.4837 21.7495Z' fill='url(%23paint1_linear_166_2)'/%3E%3Cdefs%3E%3ClinearGradient id='paint0_linear_166_2' x1='19.5253' y1='9.63312' x2='22.5548' y2='21.88' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FEBC29'/%3E%3Cstop offset='1' stop-color='%23FCA009'/%3E%3C/linearGradient%3E%3ClinearGradient id='paint1_linear_166_2' x1='15.2561' y1='5.25' x2='15.2561' y2='25.4948' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%234F90FC'/%3E%3Cstop offset='1' stop-color='%230D4BDC'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E"
+    />
+
+    <!-- Open Graph / Facebook / Instagram / Discord -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://udhaaro.online/" />
+    <meta property="og:title" content="Udhaaro - Coming Soon" />
+    <meta
+      property="og:description"
+      content="We're building something new. Join us as an early volunteer or get in touch - more details coming soon."
+    />
+    <meta
+      property="og:image"
+      content="https://udhaaro.online/assets/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Udhaaro - Coming Soon" />
+    <meta property="og:site_name" content="Udhaaro" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://udhaaro.online/" />
+    <meta name="twitter:title" content="Udhaaro - Coming Soon" />
+    <meta
+      name="twitter:description"
+      content="We're building something new. Join us as an early volunteer or get in touch - more details coming soon."
+    />
+    <meta
+      name="twitter:image"
+      content="https://udhaaro.online/assets/og-image.png"
+    />
+
+    <!-- <meta name="twitter:site" content="@udhaaro" /> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Ambient floating gradient blobs (decorative only) -->
+    <div class="blobs" aria-hidden="true">
+      <div class="blob-wrap blob-wrap--1"><div class="blob blob--1"></div></div>
+      <div class="blob-wrap blob-wrap--2"><div class="blob blob--2"></div></div>
+      <div class="blob-wrap blob-wrap--3"><div class="blob blob--3"></div></div>
+      <div class="blob-wrap blob-wrap--4"><div class="blob blob--4"></div></div>
+    </div>
+
+    <main>
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="top">
+        <div class="container hero-inner">
+          <p class="badge hero-load hero-load--1">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Something exciting is coming
+          </p>
+
+          <h1 class="hero-title hero-load hero-load--2">
+            Building <em>Udhaaro.</em>
+          </h1>
+
+          <p class="hero-subtitle hero-load hero-load--3">
+            We're quietly building a new product from the ground up. It's still
+            under wraps, but we can't wait to share what we've been working on.
+          </p>
+
+          <div class="highlight hero-load hero-load--4">
+            <span class="highlight-line" aria-hidden="true"></span>
+            <span class="highlight-text">Coming Soon</span>
+            <span class="highlight-line" aria-hidden="true"></span>
+          </div>
+
+          <div
+            class="countdown hero-load hero-load--5"
+            role="timer"
+            aria-live="polite"
+            aria-atomic="true"
+            aria-label="Time remaining until launch"
+          >
+            <div class="countdown-item">
+              <span class="countdown-value" id="count-days">00</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="count-hours">00</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="count-mins">00</span>
+              <span class="countdown-label">Min</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" id="count-secs">00</span>
+              <span class="countdown-label">Sec</span>
+            </div>
+          </div>
         </div>
+
+        <a
+          href="#volunteer"
+          class="scroll-cue hero-load hero-load--6"
+          aria-label="Scroll to open roles"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </a>
+      </section>
+
+      <!-- ============ VOLUNTEER / OPEN ROLES ============ -->
+      <section class="volunteer" id="volunteer">
+        <div class="container">
+          <span class="eyebrow reveal">Open Roles</span>
+          <h2 class="section-title reveal">Join us as an Early Volunteer</h2>
+          <p class="section-text reveal">
+            We're looking for early volunteers who want to help shape something
+            new from day one. It won't always be glamorous, but it will be
+            meaningful and high performing contributors will be considered for
+            full-time positions once we officially launch.
+          </p>
+
+          <div class="roles-grid">
+            <!-- React Native Developer -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="7" y="2" width="10" height="20" rx="2"></rect>
+                  <line x1="11" y1="18" x2="13" y2="18"></line>
+                </svg>
+              </div>
+              <h3 class="role-title">React Native Developer</h3>
+              <p class="role-desc">
+                Build fluid, native-feeling mobile experiences from a single
+                codebase.
+              </p>
+            </article>
+
+            <!-- PHP Backend Developer -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
+                  <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
+                  <circle
+                    cx="7"
+                    cy="7"
+                    r="0.6"
+                    fill="currentColor"
+                    stroke="none"
+                  ></circle>
+                  <circle
+                    cx="7"
+                    cy="17"
+                    r="0.6"
+                    fill="currentColor"
+                    stroke="none"
+                  ></circle>
+                </svg>
+              </div>
+              <h3 class="role-title">PHP Backend Developer</h3>
+              <p class="role-desc">
+                Design and maintain the server-side logic that powers everything
+                behind the scenes. Using MySQL as the database.
+              </p>
+            </article>
+
+            <!-- MySQL Database Developer -->
+            <!-- <article class="role-card reveal">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+                <path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"></path>
+                <path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path>
+              </svg>
+            </div>
+            <h3 class="role-title">MySQL Database Developer</h3>
+            <p class="role-desc">Architect reliable, scalable database structures that keep data fast and safe.</p>
+          </article> -->
+
+            <!-- UI/UX Designer -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 3l6 16 2.5-6.5L20 10 5 3z"></path>
+                </svg>
+              </div>
+              <h3 class="role-title">UI/UX Designer</h3>
+              <p class="role-desc">
+                Craft intuitive interfaces and flows that feel effortless to
+                use.
+              </p>
+            </article>
+
+            <!-- Marketing Specialist -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M3 10v4a1 1 0 0 0 1 1h2l4 4V5L6 9H4a1 1 0 0 0-1 1z"
+                  ></path>
+                  <path d="M14 8a4 4 0 0 1 0 8"></path>
+                  <path d="M17 5a8 8 0 0 1 0 14"></path>
+                </svg>
+              </div>
+              <h3 class="role-title">Marketing Specialist</h3>
+              <p class="role-desc">
+                Shape how we tell our story and reach the right people at the
+                right time.
+              </p>
+            </article>
+
+            <!-- Graphic Designer -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M3 21l4-1 11-11-3-3L4 17l-1 4z"></path>
+                  <path d="M14 6l3 3"></path>
+                </svg>
+              </div>
+              <h3 class="role-title">Graphic Designer</h3>
+              <p class="role-desc">
+                Bring our visual identity to life across every touchpoint.
+              </p>
+            </article>
+
+            <!-- Video Editor -->
+            <article class="role-card reveal">
+              <div class="role-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="3" y="9" width="18" height="12" rx="1.5"></rect>
+                  <path d="M3 9l2.5-5h3L6 9"></path>
+                  <path d="M9 9l2.5-5h3L12 9"></path>
+                  <path d="M15 9l2.5-5h3L18 9"></path>
+                </svg>
+              </div>
+              <h3 class="role-title">Video Editor</h3>
+              <p class="role-desc">
+                Turn raw footage into compelling stories that capture attention.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CTA ============ -->
+      <section class="cta" id="contact">
+        <div class="container">
+          <div class="cta-panel reveal">
+            <span class="eyebrow">Let's Talk</span>
+            <h2 class="section-title">
+              Have questions, or want to help us build this?
+            </h2>
+            <a class="btn-gradient" href="mailto:udhaaronepal@gmail.com"
+              >Contact Us</a
+            >
+            <p class="cta-subtext">
+              Apply as a volunteer or send any questions.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p class="footer-text">More updates coming soon.</p>
+        <p class="footer-meta">
+          &copy; <span id="year">2026</span> — All rights reserved.
+        </p>
       </div>
-    </div>
+    </footer>
 
-    <div class="hero">
-      <div class="badge">
-        <span class="badge-dot"></span>
-        Coming Soon
-      </div>
-      <h1>We're crafting<br><span class="accent">something great</span></h1>
-      <p class="hero-desc">
-        Our platform is under construction. We're putting the finishing touches on an experience built for Nepal. Stay
-        tuned it'll be worth the wait.
-      </p>
-    </div>
-
-    <div class="roles-section">
-      <p class="roles-label">We're looking for talented people</p>
-      <div class="roles-grid">
-        <div class="role-chip"><span class="chip-icon">🎨</span> Graphics Designer</div>
-        <div class="role-chip"><span class="chip-icon">🔍</span> SEO Expert</div>
-        <div class="role-chip"><span class="chip-icon">✍️</span> Content Writer</div>
-        <div class="role-chip"><span class="chip-icon">🎬</span> Video Editor</div>
-        <div class="role-chip"><span class="chip-icon">📱</span> React Native Dev</div>
-        <div class="role-chip"><span class="chip-icon">⚡</span> Appwrite Dev</div>
-      </div>
-    </div>
-
-    <div class="cta-wrap">
-      <a class="cta-btn"
-        href="mailto:udhaaronepal@gmail.com?subject=Job%20Application%20%E2%80%94%20Udhaar%20One%20Nepal&body=Hi%2C%0A%0AI%20came%20across%20your%20listing%20and%20would%20love%20to%20join%20the%20team.%0A%0ARole%20I%27m%20applying%20for%3A%20%0AMy%20skills%3A%20%0A%0ALooking%20forward%20to%20hearing%20from%20you!">
-        Contact Us
-        <svg class="cta-arrow" viewBox="0 0 17 17" fill="none">
-          <path d="M2.5 8.5h12M9.5 3.5l5 5-5 5" stroke="white" stroke-width="1.8" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg>
-      </a>
-    </div>
-
-    <div class="divider"></div>
-  </main>
-
-  <footer>&copy; 2026 Udhaaro. All rights reserved.</footer>
-
-  <script>
-    const container = document.getElementById('particles');
-    function spawnParticle() {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      const size = Math.random() * 7 + 3;
-      p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random() * 100}%;bottom:${Math.random() * 25}%;animation-duration:${Math.random() * 5 + 5}s;animation-delay:${Math.random() * 3}s;`;
-      container.appendChild(p);
-      setTimeout(() => p.remove(), 10000);
-    }
-    setInterval(spawnParticle, 650);
-    for (let i = 0; i < 10; i++) spawnParticle();
-  </script>
-</body>
-
+    <script src="script.js" defer></script>
+  </body>
 </html>
